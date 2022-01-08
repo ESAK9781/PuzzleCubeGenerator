@@ -19,6 +19,7 @@ body{
   margin-top: 15px;
   margin-left: 15px;
   margin-right: 15px;
+  text-align: center;
 }
 
 .content h1{
@@ -34,15 +35,31 @@ body{
   position: relative;
 }
 
+button{
+  border: none;
+  background-color: rgb(135, 255, 101);
+  transition: border-radius 0.5s, font-size 1s;
+  text-align: center;
+  font-size: 15px;
+  color: rgb(42, 43, 46);
+
+  height:34px;
+  width: 90px;
+  margin-bottom: 50px;
+}
+
+button:hover{
+  border-radius: 10px;
+  font-size: 14px;
+}
 
 
-
-
-
-
-
-
-
+#check-pane{
+  float: left;
+  padding-top: 170px;
+  padding-left: 20%;
+  text-align: center;
+}
 
 
 
