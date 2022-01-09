@@ -14,6 +14,71 @@ function shuffle(array) {
     }
 }
 
+function perimeter(cub){
+  let per = 0;
+  for (let pNum = 0; pNum < pieces; pNum++){
+    for (let x = 0; x < cub.length; x++){
+      for (let y = 0; y < cub[x].length; y++){
+        for (let z = 0; z < cub[x][y].length; z++){
+          if (x == 0){
+            per++;
+            if (cub[x + 1][y][z] != pNum){
+              per++;
+            }
+          } else if (x == cub.length - 1){
+            per++;
+            if (cub[x - 1][y][z] != pNum){
+              per++;
+            }
+          }
+
+          if (y == 0){
+            per++;
+            if (cub[x][y + 1][z] != pNum){
+              per++;
+            }
+          } else if (y == cub[x].length - 1){
+            per++;
+            if (cub[x][y - 1][z] != pNum){
+              per++;
+            }
+          }
+
+          if (z == 0){
+            per++;
+            if (cub[x][y][z + 1] != pNum){
+              per++;
+            }
+          } else if (z == cub[x][y].length - 1){
+            per++;
+            if (cub[x][y][z - 1] != pNum){
+              per++;
+            }
+          }
+        }
+      }
+    }
+  }
+  return per;
+}
+
+
+function complexGenerate(n){
+  let cubes = [];
+  let bestPer = 10000000;
+  let bestIndex = 0;
+  for (let i = 0; i < n; i++){
+    cubes.push(generate());
+    let curPer = perimeter(cubes[i]);
+    if (curPer < bestPer){
+      bestPer = curPer;
+      bestIndex = i;
+    }
+  }
+  return cubes[bestIndex];
+}
+
+
 function generate(){
   let cub = createCube(finalDim, undefined);
   let stack = []; //a stack of all changes
