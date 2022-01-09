@@ -4,8 +4,9 @@
 body{
   background-color: rgb(42, 43, 46);
   color: rgb(215, 185, 213);
-  font-family: "Lucida Handwriting", "Brush Script MT", cursive, serif;
+  font-family: "Comic Sans MS", "Comic Sans", cursive, "Brush Script MT", serif;
   margin: 0px;
+  user-select: none;
 }
 
 
@@ -61,7 +62,13 @@ button:hover{
   text-align: center;
 }
 
+#iterationsLabel{
+  display: inline-block;
+}
 
+#iterations{
+  display: inline-block;
+}
 
 
 
