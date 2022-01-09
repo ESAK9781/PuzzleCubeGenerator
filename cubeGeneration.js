@@ -62,19 +62,81 @@ function perimeter(cub){
   return per;
 }
 
+function intersection(cub){
+  let vol = 0;
+  for (let i = 0; i < pieces; i++){
+    let minX;
+    let maxX;
+    let minY;
+    let maxY;
+    let minZ;
+    let maxZ;
+    for (let x = 0; x < cub.length; x++){
+      for (let y = 0; y < cub[x].length; y++){
+        for (let z = 0; z < cub[x][y].length; z++){
+          if (cub[x][y][z] == i){
+            if (minX == undefined){
+              minX = x;
+              maxX = x;
+              minY = y;
+              maxY = y;
+              minZ = z;
+              maxZ = z;
+            } else {
+              if (x < minX){
+                minX = x;
+              }
+              if (x > maxX){
+                maxX = x;
+              }
+
+              if (y < minY){
+                minY = y;
+              }
+              if (y > maxY){
+                maxY = y;
+              }
+
+              if (z < minZ){
+                minZ = z;
+              }
+              if (z > maxZ){
+                maxZ = z;
+              }
+            }
+          }
+        }
+      }
+    }
+    vol += ((maxX - minX) + 1) * ((maxY - minY) + 1) * ((maxZ - minZ) + 1);
+  }
+  return vol;
+}
+
+
+function scorePuzzle(p){
+  return (intersection(p) - 27 + perimeter(p));
+}
+
 
 function complexGenerate(n){
   let cubes = [];
-  let bestPer = 10000000;
+  let bestScore = 0;
   let bestIndex = 0;
   for (let i = 0; i < n; i++){
-    cubes.push(generate());
-    let curPer = perimeter(cubes[i]);
-    if (curPer < bestPer){
-      bestPer = curPer;
-      bestIndex = i;
+    try{
+      cubes.push(generate());
+      let cubeScore = scorePuzzle(cubes[i]);
+      if (cubeScore > bestScore){
+        bestScore = cubeScore;
+        bestIndex = i;
+      }
+    } catch(e){
+      console.error(e);
     }
+
   }
+  console.log(bestScore);
   return cubes[bestIndex];
 }
 

@@ -1,5 +1,5 @@
 
-const complexity = 10;
+let complexity = 5;
 
 let puzzle = complexGenerate(complexity);
 
@@ -58,6 +58,7 @@ function deselectAll(){
 
 
 function regen(){
+  complexity = document.getElementById("iterations").value;
   puzzle = complexGenerate(complexity);
   shuffle(colorScheme);
 
@@ -98,6 +99,8 @@ let sketch = function(p) {
     tempXRot = -1 * (p.mouseY - pMouseY);
     xrot += tempXRot;
     yrot += tempYRot;
+    tempXRot = 0;
+    tempYRot = 0;
   }
 
   function placeCube(color, x, y, z){
@@ -160,6 +163,7 @@ let sketch = function(p) {
   }
 
   p.draw = function(){
+
 
     if (p.mouseIsPressed){
       tempYRot = p.mouseX - pMouseX;
