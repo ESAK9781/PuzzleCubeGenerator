@@ -7,6 +7,12 @@ var colorScheme = ["03045e","0077b6", "00b4d8","90e0ef","caf0f8","003049","d6282
 var checkBoxes = [];
 var labels = [];
 
+var assembly = true;
+var relativePos = [];
+for (let i = 0; i < pieces; i++){
+  relativePos.push([0, 0, 0]);
+}
+
 function createCheck(){
   let pane = document.getElementById("check-pane");
   for (let i = 0; i < pieces; i++){
@@ -55,7 +61,10 @@ function deselectAll(){
   }
 }
 
-
+function disassemble(){
+  let button = document.getElementById("disassemble");
+  for ()
+}
 
 function regen(){
   complexity = document.getElementById("iterations").value;
@@ -65,6 +74,12 @@ function regen(){
   for (let i = 0; i < checkBoxes.length; i++){
     checkBoxes[i].checked = true;
     labels[i].style.backgroundColor = colorScheme[i].toString("#rrggbb");
+  }
+
+  assembly = true;
+  relativePos = [];
+  for (let i = 0; i < pieces; i++){
+    relativePos.push([0, 0, 0]);
   }
 }
 
@@ -125,7 +140,8 @@ let sketch = function(p) {
             let xCoord = (x + 0.5 - (puzzle.length / 2)) * smallSize;
             let yCoord = (y + 0.5 - (puzzle[x].length / 2)) * smallSize;
             let zCoord = (z + 0.5 - (puzzle[x][y].length / 2)) * smallSize;
-            placeCube(colorScheme[puzzle[x][y][z]], xCoord, yCoord, zCoord);
+            let shift = relativePos[puzzle[x][y][z]];
+            placeCube(colorScheme[puzzle[x][y][z]], xCoord + shift[0], yCoord + shift[1], zCoord + shift[2]);
           }
         }
       }
