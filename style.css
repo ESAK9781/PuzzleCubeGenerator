@@ -21,6 +21,7 @@ body{
   margin-left: 15px;
   margin-right: 15px;
   text-align: center;
+  margin-bottom: 15px;
 }
 
 .content h1{
@@ -39,20 +40,28 @@ body{
 button{
   border: none;
   background-color: rgb(135, 255, 101);
-  transition: border-radius 0.25s, font-size 0.5s;
+  transition: border-radius 0.25s, font-size 0.5s, background-color 0.5s;
   text-align: center;
-  font-size: 15px;
+  font-size: 14px;
   color: rgb(42, 43, 46);
 
   height:34px;
   width: 90px;
   margin-bottom: 50px;
-  border-radius: 2px;
+  border-radius: 4px;
+}
+
+button.disassemble{
+  background-color: rgb(209, 70, 47);
+}
+
+button.assemble{
+  background-color: rgb(135, 255, 101);
 }
 
 button:hover{
   border-radius: 10px;
-  font-size: 14px;
+  font-size: 13.5px;
 }
 
 

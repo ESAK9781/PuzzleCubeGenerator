@@ -5,6 +5,60 @@ const maxSize = 6;
 const minSize = 4;
 const maxIterations = 2000;
 
+
+
+
+
+function disassembleAnim(){
+  let cube = JSON.parse(JSON.stringify(c)); // clone the cube, so we can work on it
+  let directions = [
+    [1, 0, 0],
+    [0, 1, 0],
+    [0, 0, 1],
+    [-1, 0, 0],
+    [0, -1, 0],
+    [0, 0, -1]
+  ];
+  let toPull = [];
+
+  let pulled = true;
+  let pulledCount = 0;
+
+  let stillThere = []; // list of which pieces have not been pulled out
+  for (let i = 0; i < pieces; i++){
+    stillThere.push(true);
+  }
+
+  while (pulled && pulledCount < pieces){
+    pulled = false;
+
+    for (let pieceNum = 0; pieceNum < pieces; pieceNum++){
+      if (stillThere[pieceNum]){
+        for (let dnum = 0; dnum < directions.length; dnum++){
+          if (canEscape(cube, pieceNum, directions[dnum])){
+            pullPiece(cube, pieceNum);
+            stillThere[pieceNum] = false;
+            pulled = true;
+            pulledCount++;
+            toPull[pieceNum] = [...directions[dnum]];
+            let tDir = directions[dnum];
+            directions.splice(dnum, 1);
+            directions.push(tDir);
+            break;
+          }
+        }
+      }
+    }
+  }
+
+  return toPull;
+}
+
+
+
+
+
+
 function shuffle(array) {
     for (var i = array.length - 1; i > 0; i--) {
         var j = Math.floor(Math.random() * (i + 1));
@@ -61,6 +115,8 @@ function perimeter(cub){
   }
   return per;
 }
+
+
 
 function intersection(cub){
   let vol = 0;

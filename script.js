@@ -9,6 +9,7 @@ var labels = [];
 
 var assembly = true;
 var relativePos = [];
+var disDirections = disassembleAnim(puzzle);
 for (let i = 0; i < pieces; i++){
   relativePos.push([0, 0, 0]);
 }
@@ -43,7 +44,6 @@ function createCheck(){
   }
   let button = document.createElement("button");
   button.innerHTML = "Deselect";
-  button.style.fontSize = "14px";
   button.style.backgroundColor = "rgb(209, 70, 47)";
   button.style.color = "rgb(215, 185, 213)";
   button.style.textAlign = "center";
@@ -63,7 +63,14 @@ function deselectAll(){
 
 function disassemble(){
   let button = document.getElementById("disassemble");
-  for ()
+  if (assembly){
+    button.className = "assemble";
+    button.innerHTML = "Assemble";
+  } else {
+    button.className = "disassemble";
+    button.innerHTML = "Disassemble";
+  }
+  assembly = !assembly;
 }
 
 function regen(){
